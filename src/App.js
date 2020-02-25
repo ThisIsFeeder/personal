@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import Menu from "./components/Menu";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import HomeScreen from './screens/HomeScreen';
+import LoginScreen from './screens/LoginScreen';
+import Error404Screen from './screens/Error404Screen';
+import ArticleDetailScreen from './screens/ArticleDetailScreen';
+import AboutUsScreen from './screens/AboutUsScreen'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<BrowserRouter>
+			<Menu />
+			<Switch>
+				<Route exact path="/" component={HomeScreen} />
+				<Route path="/home" component={HomeScreen} />
+				<Route path="/about-us" component={AboutUsScreen} />
+				<Route path="/article-detail/:articleId" component={ArticleDetailScreen} />
+				<Route path="/login" component={LoginScreen} />
+				<Route path="*" component={Error404Screen} />
+			</Switch>
+		</BrowserRouter>
+	);
 }
 
 export default App;
